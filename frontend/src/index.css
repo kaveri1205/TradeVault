@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-main: #0b0e11;
+  --bg-card: #1e2329;
+  --bg-hover: #2b3139;
+  --primary-gold: #f0b90b;
+  --primary-gold-hover: #fcd535;
+  --success-green: #2ebd85;
+  --danger-red: #f6465d;
+  --text-primary: #eaecef;
+  --text-secondary: #848e9c;
+  --border-color: #373d44;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Utility classes for Binance theme */
+.binance-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+.text-binance-gold { color: var(--primary-gold); }
+.text-binance-green { color: var(--success-green); }
+.text-binance-red { color: var(--danger-red); }
+.text-secondary { color: var(--text-secondary); }
+
+.bg-binance-gold { background-color: var(--primary-gold); }
+.bg-binance-green { background-color: var(--success-green); }
+.bg-binance-red { background-color: var(--danger-red); }
+
+/* Trading view specific styles */
+.price-up { color: var(--success-green); }
+.price-down { color: var(--danger-red); }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
