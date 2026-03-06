@@ -170,14 +170,6 @@ The application uses Alpha Vantage for stock prices. For production:
    stock.api.key=your_api_key_here
    ```
 
-### Mock Data
-For demo purposes, the application includes mock data for popular stocks:
-- AAPL (Apple Inc.)
-- GOOGL (Alphabet Inc.)
-- MSFT (Microsoft Corporation)
-- TSLA (Tesla, Inc.)
-- AMZN (Amazon.com, Inc.)
-
 ## 🚀 Future Enhancements
 
 - [ ] Advanced charting with historical data
