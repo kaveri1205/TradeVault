@@ -32,13 +32,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     FilterChain filterChain)
             throws ServletException, IOException {
 
-        String path = request.getServletPath();
+        String path = request.getRequestURI();
 
         // Skip JWT validation for public endpoints
-        if (path.startsWith("/api/auth") || 
-            path.equals("/api/home") || 
-            path.startsWith("/api/stocks/search") || 
-            path.equals("/api/leaderboard")) {
+        // Using getRequestURI() to be robust against context path variations
+        if (path.contains("/auth") || 
+            path.contains("/home") || 
+            path.contains("/stocks/search") || 
+            path.contains("/leaderboard")) {
 
             filterChain.doFilter(request, response);
             return;

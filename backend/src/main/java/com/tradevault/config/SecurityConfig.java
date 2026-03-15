@@ -69,18 +69,21 @@ public class SecurityConfig {
         origins.add("http://localhost:5173");
         origins.add("http://localhost:3000");
         origins.add("http://127.0.0.1:5173");
+        origins.add("https://*.vercel.app");
 
         // Add origins from properties
         if (allowedOrigins != null && !allowedOrigins.isEmpty()) {
             Arrays.stream(allowedOrigins.split(","))
                     .map(String::trim)
+                    .map(s -> s.endsWith("/") ? s.substring(0, s.length() - 1) : s)
                     .forEach(origins::add);
         }
 
+        boolean hasWildcard = origins.contains("*");
         configuration.setAllowedOriginPatterns(origins);
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD"));
         configuration.setAllowedHeaders(List.of("*"));
-        configuration.setAllowCredentials(true);
+        configuration.setAllowCredentials(!hasWildcard);
         configuration.setMaxAge(3600L); // 1 hour Cache
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -104,10 +107,10 @@ public class SecurityConfig {
         // allow browser preflight requests
         .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll()
 
-        .requestMatchers("/home").permitAll()
-        .requestMatchers("/auth/**").permitAll()
-        .requestMatchers("/stocks/search/**").permitAll()
-        .requestMatchers("/leaderboard").permitAll()
+        .requestMatchers("/home", "/api/home").permitAll()
+        .requestMatchers("/auth/**", "/api/auth/**").permitAll()
+        .requestMatchers("/stocks/search/**", "/api/stocks/search/**").permitAll()
+        .requestMatchers("/leaderboard", "/api/leaderboard").permitAll()
         .requestMatchers("/favicon.ico").permitAll()
 
         .anyRequest().authenticated()
