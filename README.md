@@ -190,7 +190,7 @@ For demo purposes, the application includes mock data for popular stocks:
 
 ## 📝 Development Notes
 
-- Backend runs on port 8080
+- Backend runs on port 6060
 - Frontend runs on port 5173
 - Database connection uses MySQL
 - JWT tokens expire after 24 hours

@@ -57,7 +57,12 @@ public AuthenticationManager authenticationManager(
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOriginPatterns(List.of("http://localhost:*", "http://localhost:5173"));
+        configuration.setAllowedOriginPatterns(
+    List.of(
+        "http://localhost:*",
+        "https://*.vercel.app"
+    )
+);
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);

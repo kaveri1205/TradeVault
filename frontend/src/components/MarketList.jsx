@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { stockAPI } from '../services/api';
+import MarketChart from './MarketChart';
 
 const MarketList = () => {
     const [markets, setMarkets] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [selectedPreview, setSelectedPreview] = useState(null);
     const navigate = useNavigate();
 
     const handleTradeClick = (symbol) => {
@@ -37,7 +39,7 @@ const MarketList = () => {
         };
 
         fetchMarkets();
-        const interval = setInterval(fetchMarkets, 5000); // Update every 5 seconds for real-time consistency
+        const interval = setInterval(fetchMarkets, 50000); // Update every 5 seconds for real-time consistency
         return () => clearInterval(interval);
     }, []);
 
