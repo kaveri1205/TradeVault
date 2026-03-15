@@ -95,13 +95,18 @@ public class SecurityConfig {
                 )
 
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/home").permitAll()
-                        .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers("/stocks/search/**").permitAll()
-                        .requestMatchers("/leaderboard").permitAll()
-                        .requestMatchers("/favicon.ico").permitAll()
-                        .anyRequest().authenticated()
-                )
+
+        // allow browser preflight requests
+        .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll()
+
+        .requestMatchers("/home").permitAll()
+        .requestMatchers("/auth/**").permitAll()
+        .requestMatchers("/stocks/search/**").permitAll()
+        .requestMatchers("/leaderboard").permitAll()
+        .requestMatchers("/favicon.ico").permitAll()
+
+        .anyRequest().authenticated()
+)
 
                 .authenticationProvider(authenticationProvider())
 
