@@ -95,7 +95,7 @@ public class SecurityConfig {
                 )
 
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/hello").permitAll()
+                        .requestMatchers("/home").permitAll()
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/stocks/search/**").permitAll()
                         .requestMatchers("/leaderboard").permitAll()
